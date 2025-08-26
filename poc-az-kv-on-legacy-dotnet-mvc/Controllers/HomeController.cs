@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using poc_az_kv_on_legacy_dotnet_mvc.Services.KeyVault;
 using System.Configuration;
-using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace poc_az_kv_on_legacy_dotnet_mvc.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private readonly IKeyVaultService _keyVault;
+
+        public HomeController(IKeyVaultService keyVault)
+        {
+            _keyVault = keyVault;
+        }
+
+        public async Task<ActionResult> Index()
         { 
             // Read connection string named "DefaultConnection" (replace with your actual name)
             string connStr = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ConnectionString;
             ViewBag.ConnectionString = connStr;
+            ViewBag.SecretFromKeyVault = await _keyVault.GetSecretAsync("my-secret");
             return View();
         }
 
