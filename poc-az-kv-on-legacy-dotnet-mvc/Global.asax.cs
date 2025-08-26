@@ -28,7 +28,7 @@ namespace poc_az_kv_on_legacy_dotnet_mvc
                     tenantId: ConfigurationManager.AppSettings["TenantId"],
                     clientId: ConfigurationManager.AppSettings["ClientId"],
                     clientSecret: ConfigurationManager.AppSettings["ClientSecret"],
-                    vaultBaseUrl: "https://otraco-poc.vault.azure.net"))
+                    vaultBaseUrl: ConfigurationManager.AppSettings["KeyVaultUrl"]))
                 .SingleInstance();
 
             var container = builder.Build();
