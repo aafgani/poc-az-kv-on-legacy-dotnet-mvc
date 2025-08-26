@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace poc_az_kv_on_legacy_dotnet_mvc.Services.KeyVault
 {
-    public class KeyVaultWithClient : IKeyVaultService
+    public class KeyVaultServiceWithClient : IKeyVaultService
     {
         private readonly string _vaultBaseUrl;
 
-        public KeyVaultWithClient(string vaultBaseUrl)
+        public KeyVaultServiceWithClient(string vaultBaseUrl)
         {
             _vaultBaseUrl = vaultBaseUrl;
         }

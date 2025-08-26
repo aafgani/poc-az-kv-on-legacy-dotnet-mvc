@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace poc_az_kv_on_legacy_dotnet_mvc.Services.KeyVault
 {
-    public class KeyVaultService : IKeyVaultService
+    public class KeyVaultServiceWithHttp : IKeyVaultService
     {
         private readonly string _tenantId;
         private readonly string _clientId;
@@ -17,7 +17,7 @@ namespace poc_az_kv_on_legacy_dotnet_mvc.Services.KeyVault
         private string _cachedToken;
         private DateTimeOffset _tokenExpiresOn;
 
-        public KeyVaultService(string tenantId, string clientId, string clientSecret, string vaultBaseUrl)
+        public KeyVaultServiceWithHttp(string tenantId, string clientId, string clientSecret, string vaultBaseUrl)
         {
             _tenantId = tenantId;
             _clientId = clientId;

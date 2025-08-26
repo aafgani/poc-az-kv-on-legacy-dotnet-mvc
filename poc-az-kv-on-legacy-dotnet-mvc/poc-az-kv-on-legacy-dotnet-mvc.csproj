@@ -178,8 +178,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\KeyVault\IKeyVaultService.cs" />
-    <Compile Include="Services\KeyVault\KeyVaultWithClient.cs" />
-    <Compile Include="Services\KeyVault\KeyVaultService.cs" />
+    <Compile Include="Services\KeyVault\KeyVaultServiceWithClient.cs" />
+    <Compile Include="Services\KeyVault\KeyVaultServiceWithHttp.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

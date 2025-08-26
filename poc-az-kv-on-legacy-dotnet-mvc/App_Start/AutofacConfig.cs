@@ -20,7 +20,7 @@ namespace poc_az_kv_on_legacy_dotnet_mvc.App_Start
             // Register your KeyVaultService as singleton
             var section = (NameValueCollection)ConfigurationManager.GetSection("keyVaultSettings");
             //builder.Register<IKeyVaultService>(c =>
-            //    new KeyVaultService(
+            //    new KeyVaultServiceWithHttp(
             //        tenantId: Environment.GetEnvironmentVariable("TenantId") ?? section["TenantId"],
             //        clientId: Environment.GetEnvironmentVariable("ClientId") ?? section["ClientId"],
             //        clientSecret: Environment.GetEnvironmentVariable("ClientSecret") ?? section["ClientSecret"],
@@ -28,7 +28,7 @@ namespace poc_az_kv_on_legacy_dotnet_mvc.App_Start
             //    .SingleInstance();
 
             builder.Register<IKeyVaultService>(c =>
-                new KeyVaultWithClient(
+                new KeyVaultServiceWithClient(
                     vaultBaseUrl: Environment.GetEnvironmentVariable("KeyVaultUrl") ?? section["Url"]))
                 .SingleInstance();
 
