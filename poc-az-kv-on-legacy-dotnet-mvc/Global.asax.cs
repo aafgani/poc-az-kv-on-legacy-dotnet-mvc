@@ -2,6 +2,7 @@
 using Autofac.Integration.Mvc;
 using poc_az_kv_on_legacy_dotnet_mvc.Services.KeyVault;
 using System;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Reflection;
 using System.Web.Mvc;
@@ -25,12 +26,13 @@ namespace poc_az_kv_on_legacy_dotnet_mvc
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             // Register your KeyVaultService as singleton
+            var section = (NameValueCollection)ConfigurationManager.GetSection("keyVaultSettings");
             builder.Register<IKeyVaultService>(c =>
                 new KeyVaultService(
-                    tenantId: Environment.GetEnvironmentVariable("TenantId") ?? ConfigurationManager.AppSettings["TenantId"],
-                    clientId: Environment.GetEnvironmentVariable("ClientId") ?? ConfigurationManager.AppSettings["ClientId"],
-                    clientSecret: Environment.GetEnvironmentVariable("ClientSecret") ?? ConfigurationManager.AppSettings["ClientSecret"],
-                    vaultBaseUrl: Environment.GetEnvironmentVariable("KeyVaultUrl") ?? ConfigurationManager.AppSettings["KeyVaultUrl"]))
+                    tenantId: Environment.GetEnvironmentVariable("TenantId") ?? section["TenantId"],
+                    clientId: Environment.GetEnvironmentVariable("ClientId") ?? section["ClientId"],
+                    clientSecret: Environment.GetEnvironmentVariable("ClientSecret") ?? section["ClientSecret"],
+                    vaultBaseUrl: Environment.GetEnvironmentVariable("KeyVaultUrl") ?? section["Url"]))
                 .SingleInstance();
 
             var container = builder.Build();
