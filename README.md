@@ -4,7 +4,9 @@ This project demonstrates how to integrate Azure Key Vault into a legacy ASP.NET
 
 ## Approaches
 
-Two main approaches are implemented for accessing secrets from Azure Key Vault:
+Two main approaches are implemented for accessing secrets from Azure Key Vault. The workflow is the same:
+- Secrets are retrieved from Azure Key Vault during application startup.
+- Retrieved values are used to replace the ConfigurationManager values, covering both AppSettings and ConnectionStrings.
 
 ### 1. `KeyVaultServiceWithClient`
 - Uses the official Azure SDK (`KeyVaultClient` and `AzureServiceTokenProvider`).
@@ -33,4 +35,4 @@ Two main approaches are implemented for accessing secrets from Azure Key Vault:
 
 ## Summary
 
-This POC helps you choose the best method for your legacy .NET Framework 4.6 application to access Azure Key Vault, depending on your deployment environment and dependency constraints.
+This POC helps to choose the best method for legacy .NET Framework 4.6 application to access Azure Key Vault, depending on the deployment environment and dependency constraints.
