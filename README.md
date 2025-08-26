@@ -15,7 +15,8 @@ Two main approaches are implemented for accessing secrets from Azure Key Vault:
   - Supports Managed Identity (via AzureServiceTokenProvider) and Service Principal (via client id/secret or certificate). Best for workload on Azure
   - Handles authentication and token management internally. 
 - **Cons:**  
-  - Depends on deprecated Azure SDK libraries, e.g Microsoft.Azure.KeyVault + Microsoft.Azure.Services.AppAuthentication is the classic SDK (works fine with .NET Framework 4.6).
+  - Depends on deprecated Azure SDK libraries, e.g Microsoft.Azure.KeyVault + Microsoft.Azure.Services.AppAuthentication is the classic SDK (works fine with .NET Framework 4.6).\
+- see [here](https://github.com/aafgani/poc-az-kv-on-legacy-dotnet-mvc/blob/7453812387bef057870b09f3d2a4b443fad78d9e/poc-az-kv-on-legacy-dotnet-mvc/Services/KeyVault/KeyVaultServiceWithClient.cs#L1)
 
 ### 2. `KeyVaultServiceWithHttp`
 - Uses direct HTTP calls to Azure Key Vault REST API.
@@ -28,6 +29,7 @@ Two main approaches are implemented for accessing secrets from Azure Key Vault:
   - More code to maintain (manual token management).
   - Slightly less secure and robust compared to SDK approach.
   - Requires managing client secrets yourself (storage, rotation, expiration handling). 
+- see [here](https://github.com/aafgani/poc-az-kv-on-legacy-dotnet-mvc/blob/7453812387bef057870b09f3d2a4b443fad78d9e/poc-az-kv-on-legacy-dotnet-mvc/Services/KeyVault/KeyVaultServiceWithHttp.cs#L1)
 
 ## Summary
 
