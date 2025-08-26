@@ -7,19 +7,13 @@ namespace poc_az_kv_on_legacy_dotnet_mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IKeyVaultService _keyVault;
-
-        public HomeController(IKeyVaultService keyVault)
-        {
-            _keyVault = keyVault;
-        }
-
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         { 
-            // Read connection string named "DefaultConnection" (replace with your actual name)
+            // Read connection string named "DefaultConnection"
             string connStr = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ConnectionString;
+            string appSettingKey = ConfigurationManager.AppSettings["MyAppSettingKey"];
             ViewBag.ConnectionString = connStr;
-            ViewBag.SecretFromKeyVault = await _keyVault.GetSecretAsync("my-secret");
+            ViewBag.AppSettingKey = appSettingKey;
             return View();
         }
 
