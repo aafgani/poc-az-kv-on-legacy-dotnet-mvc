@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using poc_az_kv_on_legacy_dotnet_mvc.Services.KeyVault;
+using System;
 using System.Configuration;
 using System.Reflection;
 using System.Web.Mvc;
@@ -26,10 +27,10 @@ namespace poc_az_kv_on_legacy_dotnet_mvc
             // Register your KeyVaultService as singleton
             builder.Register<IKeyVaultService>(c =>
                 new KeyVaultService(
-                    tenantId: ConfigurationManager.AppSettings["TenantId"],
-                    clientId: ConfigurationManager.AppSettings["ClientId"],
-                    clientSecret: ConfigurationManager.AppSettings["ClientSecret"],
-                    vaultBaseUrl: ConfigurationManager.AppSettings["KeyVaultUrl"]))
+                    tenantId: Environment.GetEnvironmentVariable("TenantId") ?? ConfigurationManager.AppSettings["TenantId"],
+                    clientId: Environment.GetEnvironmentVariable("ClientId") ?? ConfigurationManager.AppSettings["ClientId"],
+                    clientSecret: Environment.GetEnvironmentVariable("ClientSecret") ?? ConfigurationManager.AppSettings["ClientSecret"],
+                    vaultBaseUrl: Environment.GetEnvironmentVariable("KeyVaultUrl") ?? ConfigurationManager.AppSettings["KeyVaultUrl"]))
                 .SingleInstance();
 
             var container = builder.Build();
